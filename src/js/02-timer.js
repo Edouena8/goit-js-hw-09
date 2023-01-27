@@ -1,4 +1,5 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
@@ -11,6 +12,8 @@ const refs = {
     minutes: document.querySelector('span[data-minutes]'),
     seconds: document.querySelector('span[data-seconds]'),
 };
+
+let timerId = null;
 
 refs.startBtn.setAttribute('disabled', true);
 
@@ -26,7 +29,7 @@ const options = {
             if(isTrue) {
                 refs.startBtn.disabled = false;
                 refs.startBtn.addEventListener('click', () => {
-                    setInterval(() => {
+                    timerId = setInterval(() => {
                         const currentTime = new Date().getTime();    
                         const inputTime = selectedDates[0].getTime();
                         const deltaTime = inputTime - currentTime;
@@ -38,6 +41,13 @@ const options = {
                         refs.hours.textContent = hours;
                         refs.minutes.textContent = minutes;
                         refs.seconds.textContent = seconds;
+                        console.log(deltaTime);
+
+                        
+                        if(deltaTime < 1000){
+                            clearInterval(timerId);
+                            Report.success('Congratulations! 🎉', 'You are a fucking lucky guy!😏', 'Accept');
+                        }
                     }, 1000);
                     });
             } else {
