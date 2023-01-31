@@ -10,7 +10,7 @@ refs.btnStop.addEventListener('click', onStopBtnClick);
 
 
 function onStartBtnClick(evt) {
-    refs.btnStart.setAttribute('disabled', true);
+    evt.currentTarget.setAttribute('disabled', true);
     refs.btnStop.disabled = false;
     timerId = setInterval(changeColor, 1000);
 }

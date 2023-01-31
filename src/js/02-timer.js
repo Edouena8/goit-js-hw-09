@@ -41,8 +41,6 @@ const options = {
                         refs.hours.textContent = hours;
                         refs.minutes.textContent = minutes;
                         refs.seconds.textContent = seconds;
-                        console.log(deltaTime);
-
                         
                         if(deltaTime < 1000){
                             clearInterval(timerId);
