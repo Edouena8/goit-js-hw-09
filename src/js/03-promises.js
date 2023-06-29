@@ -9,12 +9,12 @@ refs.form.addEventListener('submit', onHandleSubmit);
 function onHandleSubmit(evt) {
   evt.preventDefault();
 
-  const formEl = evt.currentTarget.elements;
-  let delay = +formEl.delay.value;
-  const delayStep = +formEl.step.value;
-  const amount = +formEl.amount.value;
+  const input = evt.target.elements;
+  let delay = +input.delay.value;
+  const delayStep = +input.step.value;
+  const amount = +input.amount.value;
 
-  for(let position = 1; position < amount; position += 1) {
+  for(let position = 1; position <= amount; position += 1) {
 
     createPromise(position, delay)
       .then(({ position, delay }) => {
